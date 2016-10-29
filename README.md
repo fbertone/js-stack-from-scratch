@@ -12,53 +12,54 @@
 
 [![Build Status](https://travis-ci.org/verekia/js-stack-from-scratch.svg?branch=master)](https://travis-ci.org/verekia/js-stack-from-scratch)
 
-Welcome to my modern JavaScript stack tutorial: **JavaScript Stack from Scratch**.
+Benvenuto a questa guida sul Javascript moderno. 
+Puoi trovare la versione originale, in inglese, qua: [**JavaScript Stack from Scratch**](https:/github.com/verekia/js-stack-from-scratch).
 
-This is a minimalistic and straight to the point guide to assembling a JavaScript stack. It teaches you how to set up **ES6, Babel, Gulp, ESLint, React, Redux, Webpack, Immutable, Mocha, Chai, Sinon, and Flow**. It requires some general programming knowledge, and JavaScript basics. **It focuses on wiring all these tools together** and giving you the **simplest possible example** for each tool. You can see this tutorial as *a way to write your own boilerplate from scratch*.
+Questa è una guida rapida per la creazione di uno stack Javascript. Ti spiega come utilizzare **ES6, Babel, Gulp, ESLint, React, Redux, Webpack, Immutable, Mocha, Chai, Sinon, and Flow**. Per seguire questa guida dovresti avere già qulche fondamento di programmazione generica e alcune basi di Javascript. **Ti spiegherò come collegare tutti questi strumenti assieme** e  inserirò un esempio semplice per ogni strumento trattato. Puoi vedere questa guida come un modo per *costruirti il tuo boilerplate personalizzato*.
 
-Since the goal of this tutorial is to assemble various tools, I do not go into details about how these tools work individually. Refer to their documentation or find other tutorials if you want to acquire deeper knowledge in them.
+Siccome lo scopo di questa guida è di utilizzare vari strumenti in sequenza, non entrerò nei dettagli di ciascuno strumento. Se ti interessano dei dettagli maggiori o vuoi imparare più a fondo il funzionamento di un tool specifico puoi fare riferimento alla sua documentazione ufficiale o puoi cercare altri tutorial più specifici. 
 
-A big chunk of the stack described in this tutorial uses React. A lot of React tutorials completely skip the setup part, which makes newcomers build their learning on weak foundations. Instead of giving beginners a "black box" configuration, the approach I'm taking here is to set up the foundations in the simplest possible way, for a thorough understanding.
+Una parte sostanziosa di questa guida fa riferimento a React. Molti tutoral su React saltano completamente la spiegazione della configurazione iniziale, il che porta su una cattiva strada chi sta iniziando ad imparare. Invece di fornire semplicemente una configurazione "prefabbricata", l'impostazione che utilizzerò é di costruire delle fondamenta più semplici possibile per permettere di comprendere realmente quello che sta succedendo.
 
-Code examples are available for each chapter, and you can run them all with `yarn && yarn start` or `npm install && npm start`. I recommend writing everything from scratch yourself by following the **step-by-step instructions** of each chapter.
+Esempi di codice sono disponibili in ogni capitolo e puoi avviarli utilizzando il comando `yarn && yarn start` oppure `npm install && npm start`. Ti suggerisco di riscrivere tu tutto da zero seguendo le **istruzioni passo a passo** di ogni capitolo.
 
-**Every chapter contains the code of previous chapters**, so if you are simply looking for a boilerplate project containing everything, just clone the last chapter and you're good to go.
+**Ogni capitolo contiene il codice dei capitoli precedenti**, se ti interessa unicamente creare un progetto di base contenente tutto puoi semplicemente clonare l'ultimo capitolo e sarai pronto per iniziare.
 
-Note: The order of chapters is not necessarily the most educational. For instance, testing / type checking could have been done before introducing React. It is quite difficult to move chapters around or edit past ones, since I need to apply those changes to every following chapter. If things settle down, I might reorganize the whole thing in a better way.
+Nota: l'ordine dei capitoli non è necessariamente il più educativo. Ad esempio, i test potrebbero essere stati spiegati prima di introdurre React. È abbastanza complicato riordinare i capitoli o modificare quelli passati perchè devo replicare ogni modifica sui capitoli successivi. Quando il tutto sarà più stabile potrei riorganizzare la guida in modo migliore.
 
-The code of this tutorial works on Linux, macOS, and Windows.
+Il codice presentato in questq guida funziona in Linux, macOS e Windows.
 
-## Table of contents
+## Indice
 
-[1 - Node, NPM, Yarn, and package.json](/tutorial/1-node-npm-yarn-package-json)
+[1 - Node, NPM, Yarn, e package.json](/tutorial/1-node-npm-yarn-package-json)
 
-[2 - Installing and using a package](/tutorial/2-packages)
+[2 - Installare e utilizzare un pacchetto](/tutorial/2-packages)
 
-[3 - Setting up ES6 with Babel and Gulp](/tutorial/3-es6-babel-gulp)
+[3 - Configurare ES6 con Babel e Gulp](/tutorial/3-es6-babel-gulp)
 
-[4 - Using the ES6 syntax with a class](/tutorial/4-es6-syntax-class)
+[4 - Usare la sintassi di ES6 con una classe](/tutorial/4-es6-syntax-class)
 
-[5 - The ES6 modules syntax](/tutorial/5-es6-modules-syntax)
+[5 - La sintassi di ES6 per i moduli](/tutorial/5-es6-modules-syntax)
 
 [6 - ESLint](/tutorial/6-eslint)
 
-[7 - Client app with Webpack](/tutorial/7-client-webpack)
+[7 - App client con Webpack](/tutorial/7-client-webpack)
 
 [8 - React](/tutorial/8-react)
 
 [9 - Redux](/tutorial/9-redux)
 
-[10 - Immutable JS and Redux Improvements](/tutorial/10-immutable-redux-improvements)
+[10 - Immutable JS e Redux Improvements](/tutorial/10-immutable-redux-improvements)
 
-[11 - Testing with Mocha, Chai, and Sinon](/tutorial/11-testing-mocha-chai-sinon)
+[11 - Testare con Mocha, Chai, e Sinon](/tutorial/11-testing-mocha-chai-sinon)
 
-[12 - Type Checking with Flow](/tutorial/12-flow)
+[12 - Controlli di tipo con Flow](/tutorial/12-flow)
 
-## Coming up next
+## Prossimamente
 
-Production / development environments, Express, React Router, Server-Side Rendering, Styling, Enzyme, Git Hooks.
+Ambienti di sviluppo e produzione, Express, React Router, Server-Side Rendering, Styling, Enzyme, Git Hooks.
 
-## Translations
+## Traduzioni
 
 - [Chinese](https://github.com/pd4d10/js-stack-from-scratch) by [@pd4d10](http://github.com/pd4d10)
 
@@ -66,6 +67,7 @@ If you want to add your translation, please read the [translation recommendation
 
 ## Credits
 
-Created by [@verekia](https://twitter.com/verekia) – [verekia.com](http://verekia.com/).
+Creato da [@verekia](https://twitter.com/verekia) – [verekia.com](http://verekia.com/).
+Tradotto da Fabrizio Bertone
 
-License: MIT
+Licenza: MIT
