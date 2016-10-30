@@ -1,6 +1,6 @@
-# 4 - Using the ES6 syntax with a class
+# 4 - Utilizzare la sintassi ES6 con una classe
 
-- Create a new file, `src/dog.js`, containing the following ES6 class:
+- Crea un nuovo file, `src/dog.js`, contenente la seguente classe ES6:
 
 ```javascript
 class Dog {
@@ -16,11 +16,11 @@ class Dog {
 module.exports = Dog;
 ```
 
-It should not look surprising to you if you've done OOP in the past in any language. It's relatively recent for JavaScript though. The class is exposed to the outside world via the `module.exports` assignment.
+Non dovrebbe sorprenderti se hai già fatto della programmazione ad oggetti in un qualsiasi linguaggio. È comunque abbastanza recente nell'ecosistema Javascript. La classe viene esposta al mondo esterno tramite l'assegnazione a `module.exports`.
 
-Typical ES6 code uses classes, `const` and `let`, "template strings" (with back ticks) like the one in `bark()`, and arrow functions (`(param) => { console.log('Hi'); }`), even though we're not using any in this example.
+Tipicamente il codice ES6 utilizza le classi, `const` e `let`, "modelli di stringhe" (utilizzando gli apici inversi) ad esempio `bark()`, e le arrow function (`(param) => { console.log('Hi'); }`), anche se non ne utilizziamo nessuna in questo semplice esempio.
 
-In `src/index.js`, write the following:
+In `src/index.js`, scrivi questo:
 
 ```javascript
 const Dog = require('./dog');
@@ -29,13 +29,13 @@ const toby = new Dog('Toby');
 
 console.log(toby.bark());
 ```
-As you can see, unlike the community-made package `color` that we used before, when we require one of our files, we use `./` in the `require()`.
+Come puoi vedere, a differenza del pacchetto `color` che abbiamo utilizzato in precedenza, quando utilizziamo un modulo scritto da noi utilizziamo il prefisso `./` nella funzione `require()`.
 
-- Run `yarn start` and it should print 'Wah wah, I am Toby'.
+- Esegui `yarn start` e dovresti ottenere 'Wah wah, I am Toby'.
 
-- Take a look at the code generated in `lib` to see how your compiled code looks like (`var` instead of `const` for instance).
+- Dai un'occhiata al codice generato in `lib` per vedere com'è il codice generato (`var` al posto di `const` ad esempio).
 
 
-Next section: [5 - The ES6 modules syntax](/tutorial/5-es6-modules-syntax)
+Prossima sezione: [5 - La sintassi ES6 per i moduli](/tutorial/5-es6-modules-syntax)
 
-Back to the [previous section](/tutorial/3-es6-babel-gulp) or the [table of contents](https://github.com/verekia/js-stack-from-scratch).
+Torna alla [sezione precedente](/tutorial/3-es6-babel-gulp) o all'[indice](https://github.com/verekia/js-stack-from-scratch).
