@@ -111,38 +111,38 @@ export default {
 };
 ```
 
-Let's analyze this a bit:
+Analizziamo:
 
-We need this file to `export` stuff for Webpack to read. `output.filename` is the name of the bundle we want to generate. `devtool: 'source-map'` will enable source maps for a better debugging experience in your browser. In `module.loaders`, we have a `test`, which is the JavaScript regex that will be used to test which files should be processed by the `babel-loader`. Since we will use both `.js` files and `.jsx` files (for React) in the next chapters, we have the following regex: `/\.jsx?$/`. The `node_modules` folder is excluded because there is no transpilation to do there. This way, when your code `import`s packages located in `node_modules`, Babel doesn't bother processing those files, which reduces build time. The `resolve` part is to tell Webpack what kind of file we want to be able to `import` in our code using extension-less paths like `import Foo from './foo'` where `foo` could be `foo.js` or `foo.jsx` for instance.
+Questo file deve fare `export` di cose in modo che Webpack possa accedervi. `output.filename` è il nome del file che vogliamo generare. `devtool: 'source-map'` attiverà le source map per permettere un debug più agevole nel browser. In `module.loaders`, abbiamo un `test`, che è l'espressione regolare (regex) JavaScript regex che verrà utilizzata per definire quali file verranno processati tramite `babel-loader`. Siccome utilizzeremo sia file di tipo `.js` che `.jsx` (per React) nei prossimi capitoli, applichiamo questa regex: `/\.jsx?$/`. La cartella `node_modules` viene esclusa perchè non dovremo fare nessuna manipolazione ai moduli presenti la dentro. In questo modo, quando il tuo codice fa degli `import` di pacchetti presenti in `node_modules`, Babel non si preoccuperà di processare tutti i file, in che riducerà i tempi di build. La sezione `resolve` serve a spiegare a Webpack quale tipi di file vogliamo poter `import`are nel nostro codice utilizzando dei percorsi semplici senza parte finale, ad esempio: `import Foo from './foo'` dove `foo` potrebbe essere `foo.js` oppure `foo.jsx`.
 
-Okay so now we have Webpack set up, but we still need a way to *run* it.
+Okay adesso abbiamo configurato Webpack ma ci serve ancora una maniera per *eseguirlo*.
 
-## Integrating Webpack to Gulp
+## Integrare Webpack in Gulp
 
-Webpack can do a lot of things. It can actually replace Gulp entirely if your project is mostly client-side. Gulp being a more general tool, it is better suited for things like linting, tests, and back-end tasks though. It is also simpler to understand for newcomers than a complex Webpack config. We have a pretty solid Gulp setup and workflow here, so integrating Webpack to our Gulp build is going to be easy peasy.
+Webpack può svolgere molti compiti. Può anche rimpiazzare completamente Gulp se il tuo è un progetto principalmente client-side. Gulp, essendo un tool più generico, è migliore per svolgere compiti quali linting, test, e task di back-end. È inoltre più intuitivo e semplice da capire per chi sta iniziando rispetto alla configurazione di Webpack. Abbiamo già creato una solida configurazione di Gulp, integrare Webpack sarà quindi un gioco da ragazzi.
 
-Let's create the Gulp task to run Webpack. Open your `gulpfile.babel.js`.
+Creiamo il task di Gulp per eseguire Webpack. Apri `gulpfile.babel.js`.
 
-We don't need the `main` task to execute `node lib/` anymore, since we will open `index.html` to run our app.
+Non abbiamo più bisogno che il task `main` esegua `node lib/` perchè apriremo `index.html` per eseguire la nostra app.
 
-- Remove `import { exec } from 'child_process'`.
+- Rimuovi `import { exec } from 'child_process'`.
 
-Similarly to Gulp plugins, the `webpack-stream` package lets us integrate Webpack into Gulp very easily.
+In modo simile ai plugin di Gulp, il modulo `webpack-stream` ci permette di integrare molto semplicemente Webpack all'interno di Gulp.
 
-- Install the package with: `yarn add --dev webpack-stream`
+- Installa il modulo con: `yarn add --dev webpack-stream`
 
-- Add the following `import`s:
+- Aggiungi i seguenti `import`:
 
 ```javascript
 import webpack from 'webpack-stream';
 import webpackConfig from './webpack.config.babel';
 ```
 
-The second line just grabs our config file.
+La seconda linea prende semplicemente la configurazione di webpack.
 
-Like I said earlier, in the next chapter we are going to use `.jsx` files (on the client, and even on the server later on), so let's set that up right now to have a bit of a head start.
+Come ho già detto, nei prossimi capitoli utilizzeremo dei file `.jsx`  (lato client, e successivamente anche lato server), iniziamo a configurarli adesso in modo da partire preparati.
 
-- Change the constants to the following:
+- Cambia le costanti in questo modo:
 
 ```javascript
 const paths = {
@@ -157,11 +157,11 @@ const paths = {
 };
 ```
 
-The `.js?(x)` is just a pattern to match `.js` or `.jsx` files.
+Il `.js?(x)` è semplicemente un pattern per considerare sia i file `.js` che `.jsx`.
 
-We now have constants for the different parts of our application, and an entry point file.
+Adesso abbiamo delle costanti per le varie sezioni dell'app ed un entrypoint da cui iniziare l'esecuzione.
 
-- Modify the `main` task like so:
+- Modifica il task `main` in questo modo:
 
 ```javascript
 gulp.task('main', ['lint', 'clean'], () =>
@@ -171,13 +171,13 @@ gulp.task('main', ['lint', 'clean'], () =>
 );
 ```
 
-**Note**: Our `build` task currently transpiles ES6 code to ES5 for every `.js` file located under `src`. Now that we've split our code into `server`, `shared`, and `client` code, we could make this task only compile `server` and `shared` (since Webpack takes care of `client`). However, in the Testing chapter, we are going to need Gulp to also compile the `client` code to test it outside of Webpack. So until you reach that chapter, there is a bit of useless duplicated build being done. I'm sure we can all agree that it's fine for now. We actually aren't even going to be using the `build` task and `lib` folder anymore until that chapter, since all we care about right now is the client bundle.
+**Nota**: Il nostro task `build` attualmente transpila il codice ES6 a ES5 per ogni file `.js` contenuti in `src`. Adesso che abbiamo suddiviso il nostro codice in `server`, `shared`, e `client`, possiamo fare in modo che questo task compili unicamente `server` e `shared` (visto che Webpacksi occupa di `client`). Tuttavia, nel capitolo dedicato al Testing, avremo bisogno di far compilare a Gulp anche la parte `client` in modo da testarlo al di fuori di Webpack. Quindi, fino a quando non raggiungerai quel capitolo, alcune fasi di build saranno duplicate. Sonon sicuro che possiamo essere tutti d'accordo che non ci sono problemi. Effettivamente non utilizzeremo più il task `build` e la cartella `lib` fino a reggiungere quel capitolo, perchè per il momento ci occuperemo unicamente di impacchettare il codice client.
 
-- Run `yarn start`, you should now see Webpack building your `client-bundle.js` file, and opening `index.html` in your browser should display "Wah wah, I am Browser Toby".
+- Esegui `yarn start`, dovresti vedere Webpack che costruisce il file `client-bundle.js` e aprendo `index.html`nel browser dovresti vederey "Wah wah, I am Browser Toby".
 
-One last thing: unlike our `lib` folder, the `dist/client-bundle.js` and `dist/client-bundle.js.map` files are not being cleaned up by our `clean` task before each build.
+Un'ultima cosa: a differenza della cartella `lib` i file `dist/client-bundle.js` e `dist/client-bundle.js.map` non vengono cancellati dal nostro task `clean` prima di ogni build.
 
-- Add `clientBundle: 'dist/client-bundle.js?(.map)'` to our `paths` configuration, and tweak the `clean` task like so:
+- Aggiungi `clientBundle: 'dist/client-bundle.js?(.map)'` alla sezione `paths` e modifica il task `clean` in questo modo:
 
 ```javascript
 gulp.task('clean', () => del([
@@ -186,8 +186,8 @@ gulp.task('clean', () => del([
 ]));
 ```
 
-- Add `/dist/client-bundle.js*` to your `.gitignore` file:
+- Aggiungi `/dist/client-bundle.js*` al file `.gitignore`:
 
-Next section: [8 - React](/tutorial/8-react)
+Prossima sezione: [8 - React](/tutorial/8-react)
 
-Back to the [previous section](/tutorial/6-eslint) or the [table of contents](https://github.com/verekia/js-stack-from-scratch).
+Torna alla [sezione precedente](/tutorial/6-eslint) o all'[indice](https://github.com/fbertone/js-stack-from-scratch).
