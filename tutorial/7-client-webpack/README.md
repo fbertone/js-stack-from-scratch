@@ -1,8 +1,8 @@
-# 7 - Client App with Webpack
+# 7 - App Client con Webpack
 
-## Structure of our app
+## Struttura della nostra app
 
-- Create a `dist` folder at the root of your project, and add the following `index.html` file to it:
+- Crea una cartella `dist` nella cartella principale del progetto, e aggiungi il seguente `index.html` al suo interno:
 
 ```html
 <!doctype html>
@@ -16,11 +16,11 @@
 </html>
 ```
 
-In your `src` folder, create the following subfolders: `server`, `shared`, `client`, and move your current `index.js` into `server`, and `dog.js` into `shared`. Create `app.js` in `client`.
+Nella cartella `src`, crea le seguenti cartelle: `server`, `shared`, `client`, e sposta il file `index.js` che stai utilizzando all'interno di `server`, e `dog.js` dentro `shared`. Crea `app.js` in `client`.
 
-We are not going to do any Node back-end yet, but this separation will help you see more clearly where things belong. You'll need to change the `import Dog from './dog';` in `server/index.js` to `import Dog from '../shared/dog';` though, or ESLint will detect errors for unresolved modules.
+Per il momento non creeremo nessun backend in Node, ma questa suddivisione ti aiuterà a capire meglio come verranno struttirati i vari moduli. Dovrai sostituire `import Dog from './dog';` in `server/index.js` con `import Dog from '../shared/dog';` altrimenti ESLint si accorgerà che alcuni moduli non sono presenti.
 
-Write this in `client/app.js`:
+Scrivi questo codice in `client/app.js`:
 
 ```javascript
 import Dog from '../shared/dog';
@@ -30,36 +30,36 @@ const browserToby = new Dog('Browser Toby');
 document.querySelector('.app').innerText = browserToby.bark();
 ```
 
-Add the following to your `package.json`, under `eslintConfig`:
+Aggiungi all'interno di `package.json`, in `eslintConfig`:
 
 ```json
 "env": {
   "browser": true
 }
 ```
-This way we can use variables such as `window` or `document` which are always accessible in the browser without ESLint complaining about undeclared variables.
+In questo modo potremo utilizzare variabili come `window` o `document`, che sono sempre accessibili nel browser, senza che ESLint si lamenti.
 
-If you want to use some of the most recent ES features in your client code, like `Promise`s, you need to include the [Babel Polyfill](https://babeljs.io/docs/usage/polyfill/) in your client code.
+Se vuoi utilizzare alcune delle funzionalità più recenti di ES nel tuo client, come le `Promise`, dovrei includere i [Polyfill di Babel](https://babeljs.io/docs/usage/polyfill/) nel tuo codice.
 
-- Run `yarn add babel-polyfill`
+- Esegui `yarn add babel-polyfill`
 
-And before anything else in `app.js`, add this import:
+E in `app.js`, prima di qualunque altra cosa, aggiungi:
 
 ```javascript
 import 'babel-polyfill';
 ```
 
-Including the polyfill adds about 300KB to your bundle, so don't do this if you're not using any of the features it covers!
+Includere i polyfill aumenterà di circa 300KB il tuo client finale, quindi non farlo se non devi utilizzare nessuna delle funzionalità che fornisce!
 
 ## Webpack
 
-In a Node environment, you can freely `import` different files and Node will resolve these files using your filesystem. In a browser, there is no filesystem, and therefore your `import`s point to nowhere. In order for our entry point file `app.js` to retrieve the tree of imports it needs, we are going to "bundle" that entire tree of dependencies into one file. Webpack is a tool that does this.
+In ambiente Node, puoi liberamente fare `import` di differenti file e Node si occuperà di trovare questi file all'interno del tuo filesystem. In un browser, non c'è filesystem, quindi i tuoi `import` non puntano a nessun file. Per fare in modo che `app.js` riesca ad avere accesso a tutti moduli di cui necessita, andremo ad impacchettare tutte le dipendenze all'interno di un unico file. Webpack è uno strumento che ci permette di fare questo.
 
-Webpack uses a config file, just like Gulp, called `webpack.config.js`. It is possible to use ES6 imports and exports in it, in the exact same way that we made Gulp rely on Babel to do so: by naming this file `webpack.config.babel.js`.
+Webpack utilizza un file di configurazione, come Gulp, chiamato `webpack.config.js`. È possibile utilizzare import ed export ES6 al suo interno sfruttando Babel, esattamente come abbiamo fatto per Gulp, chiamando quindi il file `webpack.config.babel.js`.
 
-- Create an empty `webpack.config.babel.js` file
+- Crea un file `webpack.config.babel.js` vuoto
 
-- While you're at it, add `webpack.config.babel.js` to your Gulp `lint` task, and a few more `paths` constants:
+- Mentre ci sei, aggiungi `webpack.config.babel.js` al task `lint` di Gulp assieme ad alcune costanti di `paths`:
 
 ```javascript
 const paths = {
@@ -84,11 +84,11 @@ gulp.task('lint', () =>
 );
 ```
 
-We need to teach Webpack how to process ES6 files via Babel (just like we taught Gulp how to process ES6 files with `gulp-babel`). In Webpack, when you need to process files that are not plain old JavaScript, you use *loaders*. So let's install the Babel loader for Webpack:
+Dobbiamo spiegare a Webpack come processare file ES6 tramite Babel (come abbiamo fatto per Gulp e `gulp-babel`). In Webpack, quando devi processare dei file che non sono i classici JavaScript standard, dovrai utilizzare dei *loader*. Installiamo il loader di Babel per Webpack:
 
-- Run `yarn add --dev babel-loader`
+- Esegui `yarn add --dev babel-loader`
 
-- Write the following to your `webpack.config.babel.js` file:
+- Aggiungi quanto segue in `webpack.config.babel.js`:
 
 ```javascript
 export default {
