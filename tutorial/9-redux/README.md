@@ -1,16 +1,16 @@
 # 9 - Redux
 
-In this chapter (which is the most difficult so far) we will be adding [Redux](http://redux.js.org/) to our application and will hook it up with React. Redux manages the state of your application. It is composed of a **store** which is a plain JavaScript object representing the state of your app, **actions** which are typically triggered by users, and **reducers** which can be seen as action handlers. Reducers affect your application state (the *store*), and when the application state is modified, things happen in your app. A good visual demonstration of Redux can be found <a href="http://slides.com/jenyaterpil/redux-from-twitter-hype-to-production#/9">here</a>.
+In questo capitolo (che é il piú difficile finora) aggiungeremo [Redux](http://redux.js.org/) alla nostra applicazione e lo collegheremo a React. Redux controlla lo stato della tua applicazione. É composto da uno **store** che e'un oggetto Javascript che rappresenta lo stato dell'app, **actions**  che sono tipicamente scatenate dagli utenti e **reducers** che possono essere visto come handler delle azioni. I reducer modificano lo stato dell'applicazione (lo *store*) e quando lo stato dell'applicazione viene modificato delle cose succedono nell'app. Una buona rappresentazione grafica di Redux é disponibile [qua](http://slides.com/jenyaterpil/redux-from-twitter-hype-to-production#/9).
 
-In order to demonstrate how to use Redux in the simplest possible way, our app will consist of a message and a button. The message says whether the dog has barked or not (it initially hasn't), and the button makes the dog bark, which should update the message.
+Per dimostrare come utilizzare Redux nel modo piú semplice possibile, la lostra app consiste in un messaggio ed un bottone. Il messaggio indica se il cane ha abbaiato o no (inizialmente lo stato é impostato su no) ed il pulsante fa abbaiare il cane, aggiornando di conseguenza il messaggio.
 
-We are going to need 2 packages in this part, `redux` and `react-redux`.
+Ci serviremo di due pacchetti: `redux` e `react-redux`.
 
-- Run `yarn add redux react-redux`.
+- Esegui `yarn add redux react-redux`.
 
-Lets start by creating 2 folders: `src/client/actions` and `src/client/reducers`.
+Iniziamo creando due cartelle: `src/client/actions` e `src/client/reducers`.
 
-- In `actions`, create `dog-actions.js`:
+- In `actions`, crea `dog-actions.js`:
 
 ```javascript
 export const MAKE_BARK = 'MAKE_BARK';
@@ -20,9 +20,9 @@ export const makeBark = () => ({
   payload: true,
 });
 ```
-Here we define an action type, `MAKE_BARK`, and a function (also known as *action creator*) that triggers a `MAKE_BARK` action called `makeBark`. Both are exported because we'll need them both in other files. This action implements the [Flux Standard Action](https://github.com/acdlite/flux-standard-action) model, which is why it has `type` and `payload` attributes.
+Qua definiremo un tipo di azione, `MAKE_BARK`, e una funzione (anche conosciuta come *action creator*) che scatena un'azione `MAKE_BARK` chiamata `makeBark`. Entrambe sono esportate perché ci serviranno in altri file. Questa azione implementa una modello di [Azione Flux Standard](https://github.com/acdlite/flux-standard-action), ecco perché ha degli attributi `type` e `payload`.
 
-- In `reducers`, create `dog-reducer.js`:
+- In `reducers`, crea `dog-reducer.js`:
 
 ```javascript
 import { MAKE_BARK } from '../actions/dog-actions';
@@ -43,9 +43,9 @@ const dogReducer = (state = initialState, action) => {
 export default dogReducer;
 ```
 
-Here we define the initial state of our app, which is an object containing the `hasBarked` property set to `false`, and the `dogReducer`, which is the function responsible for altering the state based on which action happened. The state cannot be modified in this function, a brand new state object must be returned.
+Qua definiamo lo stato iniziale della nostra app, che é un oggetto contenente la proprietá `hasBarked` impostata a `false`, e `dogReducer`, che é la funzione responsabile di alterare lo stato in base all'azione che é stata eseguita. Lo stato non puó essere modificato in questa funzione, occorre effettuare il return di un nuovo oggetto di stato.
 
-- We are now going to modify `app.jsx` to create the *store*. You can replace the entire content of that file by the following:
+- Modifichiamo `app.jsx` per creare lo *store*. Puoi sostituire il file precedente con questo:
 
 ```javascript
 import React from 'react';
