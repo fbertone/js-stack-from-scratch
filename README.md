@@ -1,4 +1,4 @@
-# JavaScript Stack from Scratch
+# Stack JavaScript da Zero
 
 [![Yarn](/img/yarn.png)](https://yarnpkg.com/)
 [![React](/img/react.png)](https://facebook.github.io/react/)
@@ -15,7 +15,7 @@
 Benvenuto a questa guida sul Javascript moderno. 
 Puoi trovare la versione originale, in inglese, qua: [**JavaScript Stack from Scratch**](https:/github.com/verekia/js-stack-from-scratch).
 
-Questa è una guida rapida per la creazione di uno stack Javascript. Ti spiega come utilizzare **ES6, Babel, Gulp, ESLint, React, Redux, Webpack, Immutable, Mocha, Chai, Sinon, and Flow**. Per seguire questa guida dovresti avere già qulche fondamento di programmazione generica e alcune basi di Javascript. **Ti spiegherò come collegare tutti questi strumenti assieme** e  inserirò un esempio semplice per ogni strumento trattato. Puoi vedere questa guida come un modo per *costruirti il tuo boilerplate personalizzato*.
+Questa è una guida rapida per la creazione da zero di uno stack Javascript. Ti spiega come utilizzare **ES6, Babel, Gulp, ESLint, React, Redux, Webpack, Immutable, Mocha, Chai, Sinon, and Flow**. Per seguire questa guida dovresti avere già qulche fondamento di programmazione generica e alcune basi di Javascript. **Ti spiegherò come collegare tutti questi strumenti assieme** e  inserirò un esempio semplice per ogni strumento trattato. Puoi vedere questa guida come un modo per *costruirti il tuo boilerplate personalizzato*.
 
 Siccome lo scopo di questa guida è di utilizzare vari strumenti in sequenza, non entrerò nei dettagli di ciascuno strumento. Se ti interessano dei dettagli maggiori o vuoi imparare più a fondo il funzionamento di un tool specifico puoi fare riferimento alla sua documentazione ufficiale o puoi cercare altri tutorial più specifici. 
 
@@ -25,9 +25,9 @@ Esempi di codice sono disponibili in ogni capitolo e puoi avviarli utilizzando i
 
 **Ogni capitolo contiene il codice dei capitoli precedenti**, se ti interessa unicamente creare un progetto di base contenente tutto puoi semplicemente clonare l'ultimo capitolo e sarai pronto per iniziare.
 
-Nota: l'ordine dei capitoli non è necessariamente il più educativo. Ad esempio, i test potrebbero essere stati spiegati prima di introdurre React. È abbastanza complicato riordinare i capitoli o modificare quelli passati perchè devo replicare ogni modifica sui capitoli successivi. Quando il tutto sarà più stabile potrei riorganizzare la guida in modo migliore.
+Nota: l'ordine dei capitoli non è necessariamente il più didattico. Ad esempio, i test potrebbero essere stati spiegati prima di introdurre React. È abbastanza complicato riordinare i capitoli o modificare quelli passati perchè devo replicare ogni modifica sui capitoli successivi. Quando il tutto sarà più stabile potrei riorganizzare la guida in modo migliore.
 
-Il codice presentato in questq guida funziona in Linux, macOS e Windows.
+Il codice presentato in questa guida funziona in Linux, macOS e Windows.
 
 ## Indice
 
