@@ -28,4 +28,4 @@ Abbiamo utilizzato il pacchetto `color` come esempio di installazione di un semp
 
 Prossima sezione: [3 - Configurazione di ES6 con Babel e Gulp](/tutorial/3-es6-babel-gulp)
 
-Torna alla [sezione precedente](/tutorial/1-node-npm-yarn-package-json) o all'[indice](https://github.com/verekia/js-stack-from-scratch).
+Torna alla [sezione precedente](/tutorial/1-node-npm-yarn-package-json) o all'[indice](https://github.com/fbertone/js-stack-from-scratch).
