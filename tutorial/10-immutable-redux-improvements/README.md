@@ -1,26 +1,26 @@
-# 10 - Immutable JS and Redux Improvements
+# 10 - Immutable JS e Redux Improvements
 
 ## Immutable JS
 
-Unlike the previous chapter, this one is rather easy, and consists in minor improvements.
+A differenza del capitolo precedente, questo é abbastanza semplice e consiste in piccoli miglioramenti.
 
-First, we are going to add **Immutable JS** to our codebase. Immutable is a library to manipulate objects without mutating them. Instead of doing:
+Per prima cosa aggiungeremo **Immutable JS** al nostro codice. Immutable é una libreria per manipolare oggetti senza modificarli. Invece di fare:
 
 ```javascript
 const obj = { a: 1 };
 obj.a = 2; // Mutates `obj`
 ```
-You would do:
+Fraremmo:
 ```javascript
 const obj = Immutable.Map({ a: 1 });
 obj.set('a', 2); // Returns a new object without mutating `obj`
 ```
 
-This approach follows the **functional programming** paradigm, which works really well with Redux. Your reducer functions actually *have* to be pure functions that don't alter the state passed as parameter, but return a brand new state object instead. Let's use Immutable to enforce this.
+Questo approccio segue il paradigma della **programmazione funzionale**, che funziona molto bene con Redux. Le tue funzioni reducer *devono* essere funzioni pure che non alterano lo stato passato come parametro, ma ritornano invece un nuovo oggetto. Usiamo Immutable per assicurarci che sia cosí.
 
-- Run `yarn add immutable`
+- Esegui `yarn add immutable`
 
-We are going to use `Map` in our codebase, but ESLint and the Airbnb config will complain about using a capitalized name without it being a class. Add the following to your `package.json` under `eslintConfig`:
+Utilizzeremo `Map` nel nostro codice, ma ESLint e la configurazione Airbnb si lamenteranno dell'utilizzo di una dell'iniziale maiuscola per quella che non é una classe. Aggiungi questo al `package.json` sotto `eslintConfig`:
 
 ```json
 "rules": {
@@ -35,11 +35,11 @@ We are going to use `Map` in our codebase, but ESLint and the Airbnb config will
   ]
 }
 ```
-This makes `Map` and `List` (the 2 Immutable objects you'll use all the time) exceptions to that ESLint rule. This verbose JSON formatting is actually done automatically by Yarn/NPM, so we cannot make it more compact unfortunately.
+Questo fa in modo che `Map` e `List` (i due oggetti di Immutable che utilizzeremo in continuazione) siano delle eccezioni alle regole di ESLint. Questa formattazione JSON cosí prolissa é generata automaticamente da Yarn/NPM, non possiamo quindi renderla piú compatta.
 
-Anyway, back to Immutable:
+Ad ogni modo, torniamo a Immutable:
 
-In `dog-reducer.js` tweak your file so it looks like this:
+Modifica `dog-reducer.js` in modo che diventi cosí:
 
 ```javascript
 import Immutable from 'immutable';
@@ -61,9 +61,9 @@ const dogReducer = (state = initialState, action) => {
 export default dogReducer;
 ```
 
-The initial state is now built using an Immutable Map, and the new state is generated using `set()`, preventing any mutation of the previous state.
+Lo stato iniziale viene adesso creato utilizzando una Map di Immutable, e il nuovo stato viene generato utilizzando `set()`, impedendo ogni modifica allo stato precedente.
 
-In `containers/bark-message.js`, update the `mapStateToProps` function to use `.get('hasBarked')` instead of `.hasBarked`:
+In `containers/bark-message.js`, aggiorna la funzione `mapStateToProps` in modo da usare `.get('hasBarked')` al posto di `.hasBarked`:
 
 ```javascript
 const mapStateToProps = state => ({
@@ -71,20 +71,20 @@ const mapStateToProps = state => ({
 });
 ```
 
-The app should still behave exactly the way it did before.
+L'app dovrebbe ancora comportarsi esattamente come prima.
 
-**Note**: If Babel complains about Immutable exceeding 100KB, add `"compact": false` to your `package.json` under `babel`.
+**Nota**: Se Babel si lamenta del fatto che Immutable supera i 100KB, aggiungi `"compact": false` nel `package.json` alla voce `babel`.
 
-As you can see from the code snippet above, our state object still contains a plain old `dog` object attribute, which isn't immutable. It is fine this way, but if you want to only manipulate immutable objects, you could install the `redux-immutable` package to replace Redux's `combineReducers` function.
+Come puoi vedere dal pezzo di codice precedente, il nostro oggetto di stato contiene ancora l'attributo `dog` che non é immutabile. Va bene cosí, ma se vuoi manipolare esclusivamente oggetti immutabili, puoi installare il pacchetto `redux-immutable` per sostituire la funzione `combineReducers` di Redux.
 
-**Optional**:
-- Run `yarn add redux-immutable`
-- Replace your `combineReducers` function in `app.jsx` to use the one imported from `redux-immutable` instead.
-- In `bark-message.js` replace `state.dog.get('hasBarked')` by `state.getIn(['dog', 'hasBarked'])`.
+**Opzionale**:
+- Esegui `yarn add redux-immutable`
+- Sostituisci la funzione `combineReducers` in `app.jsx` per usare quella importata da `redux-immutable`.
+- In `bark-message.js` sostituisci `state.dog.get('hasBarked')` con `state.getIn(['dog', 'hasBarked'])`.
 
-## Redux Actions
+## Azioni Redux
 
-As you add more and more actions to your app, you will find yourself writing quite a lot of the same boilerplate. The `redux-actions` package helps reducing that boilerplate code. With `redux-actions` you can rewrite your `dog-actions.js` file in a more compact way:
+Man mano che aggiungi sempre piú azioni alla tua app, ti accorgerai che stai scrivendo molto codice ripetuto. Il pacchetto `redux-actions` ti aiuterá a ridurre le ripetizioni. Con `redux-actions` puoi riscrivere il file `dog-actions.js` in modo piú compatto:
 
 ```javascript
 import { createAction } from 'redux-actions';
@@ -93,10 +93,10 @@ export const MAKE_BARK = 'MAKE_BARK';
 export const makeBark = createAction(MAKE_BARK, () => true);
 ```
 
-`redux-actions` implement the [Flux Standard Action](https://github.com/acdlite/flux-standard-action) model, just like the action we previously wrote, so integrating `redux-actions` is seamless if you follow this model.
+`redux-actions` implementa il modello di [Azione Standard Flux](https://github.com/acdlite/flux-standard-action), proprio come l'azione che abbiamo scritto precedentemente, quindi integrare `redux-actions` sará del tutto lineare se segui questo modello.
 
-- Don't forget to run `yarn add redux-actions`.
+- Non dimenticarti di eseguire `yarn add redux-actions`.
 
-Next section: [11 - Testing with Mocha, Chai, and Sinon](/tutorial/11-testing-mocha-chai-sinon)
+Prossima sezione: [11 - Testing with Mocha, Chai, and Sinon](/tutorial/11-testing-mocha-chai-sinon)
 
-Back to the [previous section](/tutorial/9-redux) or the [table of contents](https://github.com/verekia/js-stack-from-scratch).
+Torna alla [sezione precedente](/tutorial/9-redux) o all'[indice](https://github.com/fbertone/js-stack-from-scratch).
