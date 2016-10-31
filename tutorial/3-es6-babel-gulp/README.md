@@ -90,4 +90,4 @@ OK! Vediamo se funziona tutto.
 
 Prossima sezione: [4 - Utilizzare la sintassi ES6 scon una classe](/tutorial/4-es6-syntax-class)
 
-Torna alla [sezione precedente](/tutorial/2-packages) o all'[indice](https://github.com/verekia/js-stack-from-scratch).
+Torna alla [sezione precedente](/tutorial/2-packages) o all'[indice](https://github.com/fbertone/js-stack-from-scratch).
