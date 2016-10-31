@@ -47,4 +47,4 @@ Nota il modo in cui abbiamo estatto la funzione `exec` direttamente da `child_pr
 
 Prossima sezione: [6 - ESLint](/tutorial/6-eslint)
 
-Torna alla [sezione precedente](/tutorial/4-es6-syntax-class) o all'[indice](/).
+Torna alla [sezione precedente](/tutorial/4-es6-syntax-class) o all'[indice](https://github.com/fbertone/js-stack-from-scratch).
