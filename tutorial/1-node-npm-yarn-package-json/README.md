@@ -47,4 +47,4 @@ yarn-error.log
 
 Prossima sezione: [2 - Installare ed usare un pacchetto](/tutorial/2-packages)
 
-Torna all'[indice](https://github.com/verekia/js-stack-from-scratch).
+Torna all'[indice](https://github.com/fbertone/js-stack-from-scratch).
