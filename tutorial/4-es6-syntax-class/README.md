@@ -38,4 +38,4 @@ Come puoi vedere, a differenza del pacchetto `color` che abbiamo utilizzato in p
 
 Prossima sezione: [5 - La sintassi ES6 per i moduli](/tutorial/5-es6-modules-syntax)
 
-Torna alla [sezione precedente](/tutorial/3-es6-babel-gulp) o all'[indice](https://github.com/verekia/js-stack-from-scratch).
+Torna alla [sezione precedente](/tutorial/3-es6-babel-gulp) o all'[indice](https://github.com/fbertone/js-stack-from-scratch).
