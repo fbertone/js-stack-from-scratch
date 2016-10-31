@@ -71,19 +71,19 @@ ReactDOM.render(
 );
 ```
 
-Our store is created by the Redux function `createStore`, pretty explicit. The store object is assembled by combining all our reducers (in our case, only one) using Redux's `combineReducers` function. Each reducer is named here, and we'll name ours `dog`.
+Il nostro store é creato tramite la funzione Redux `createStore`, é abbastanza esplicito. L'oggetto store é assemblato combinando tutti i reducer (nel nostro caso solo uno) utilizzando la funzione di Redux `combineReducers`. Qua viene assegnato un nome ad ogni reducer, e chiameremo il nostro `dog`.
 
-That's pretty much it for the pure Redux part.
+Questo é tutto per la parte di Redux puro.
 
-Now we are going to hook up Redux with React using `react-redux`. In order for `react-redux` to pass the store to our React app, it needs to wrap the entire app in a `<Provider>` component. This component must have a single child, so we created a `<div>`, and this `<div>` contains the 2 main elements of our app, a `BarkMessage` and a `BarkButton`.
+Adesso agganceremo Redux con React utilizzando `react-redux`. Per fare in modo che `react-redux` passi lo store alla nostra app React, dobbiamo incapsulare il tutto in un componente `<Provider>`. Questo componente deve avere un unico figlio, quindi abbiamo creato un `<div>`, e questo `<div>` contiene i due elementi principali della nostra app: `BarkMessage` e `BarkButton`.
 
-As you can tell in the `import` section, `BarkMessage` and `BarkButton` are imported from a `containers` folder. Now is a good time to introduce the concept of **Components** and **Containers**.
+Come puoi vedere dalla sezione `import`, `BarkMessage` e `BarkButton` sono importati da una cartella `containers`. Adesso é il momento buono per introdurre i concetti di **Components** e **Containers**.
 
-*Components* are *dumb* React components, in a sense that they don't know anything about the Redux state. *Containers* are *smart* components that know about the state and that we are going to *connect* to our dumb components.
+I *Components* sono componenti React *stupidi*, nel senso che non conoscono nulla dello stato di Redux. I *Containers* sono componenti *intelligenti* che sono a conoscenza dello stato e verranno utilizzati per *collegare* i nostri componenti stupidi.
 
-- Create 2 folders, `src/client/components` and `src/client/containers`.
+- Crea 2 cartelle, `src/client/components` e `src/client/containers`.
 
-- In `components`, create the following files:
+- In `components`, crea questi file:
 
 **button.jsx**
 
@@ -100,7 +100,7 @@ Button.propTypes = {
 export default Button;
 ```
 
-and **message.jsx**:
+e **message.jsx**:
 
 ```javascript
 import React, { PropTypes } from 'react';
@@ -115,11 +115,11 @@ export default Message;
 
 ```
 
-These are examples of *dumb* components. They are logic-less, and just show whatever they are asked to show via React **props**. The main difference between `button.jsx` and `message.jsx` is that `Button` contains an **action** in its props. That action is bound on the `onClick` event. In the context of our app, the `Button` label is never going to change, however, the `Message` component is going to reflect the state of our app, and will vary based on the state.
+Questi sono esempi di componenti *stupidi*. Non contengono una logica, e mostrano semplicemente quello che gli viene chiesto di mostrare tramite le **props** di React. La differenza principale tra `button.jsx` e `message.jsx` é che `Button` contiene un'**action** fra le sue props. Questa azione é collegata all'evento `onClick`. Nel contesto della nostra applicazione, la label del `Button` non cambierá mai, tuttavia, il componente `Message` rifletterá lo stato dell'app e varierá di conseguenza.
 
-Again, *components* don't know anything about Redux **actions** or the **state** of our app, which is why we are going to create smart **containers** that will feed the proper *actions* and *data* to these 2 dumb components.
+Ripeto: i *components* non sanno nulla delle **actions** di Redux o dello **stato** dell'app, per questo motivo creeremo dei **containers** che forniranno le *azioni* e i *dati* a questi due componenti stupidi.
 
-- In `containers`, create the following files:
+- In `containers`, crea questi file:
 
 **bark-button.js**
 
@@ -136,7 +136,7 @@ const mapDispatchToProps = dispatch => ({
 export default connect(null, mapDispatchToProps)(Button);
 ```
 
-and **bark-message.js**:
+e **bark-message.js**:
 
 ```javascript
 import { connect } from 'react-redux';
@@ -149,10 +149,10 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(Message);
 ```
 
-`BarkButton` will hook up `Button` with the `makeBark` action and Redux's `dispatch` method, and `BarkMessage` will hook up the app state with `Message`. When the state changes, `Message` will now automatically re-render with the proper `message` prop. These connections are done via the `connect` function of `react-redux`.
+`BarkButton` collegherá il `Button` con l'azione `makeBark` ed il metodo `dispatch` di React, e `BarkMessage` collegherá lo stato dell'applicazione con `Message`. Quando lo stato cambia, `Message` verrá automaticamente ricaricato con la prop `message` corretta. Questi collegamenti sono fatti tramite la funzione `connect` di `react-redux`.
 
-- You can now run `yarn start` and open `index.html`. You should see "The dog did not bark" and a button. When you click the button, the message should show "The dog barked".
+- Puoi eseguire `yarn start` ed aprire `index.html`. Dovresti vedere "The dog did not bark" ed un bottone. Quando clicki sul bottone, il messaggio dovrebbe diventare "The dog barked".
 
-Next section: [10 - Immutable JS and Redux Improvements](/tutorial/10-immutable-redux-improvements)
+Prossima sezione: [10 - Immutable JS and Redux Improvements](/tutorial/10-immutable-redux-improvements)
 
-Back to the [previous section](/tutorial/8-react) or the [table of contents](https://github.com/verekia/js-stack-from-scratch).
+Torna alla [sezione precedente](/tutorial/8-react) o all'[indice](https://github.com/fbertone/js-stack-from-scratch).
