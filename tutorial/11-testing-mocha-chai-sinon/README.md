@@ -1,16 +1,16 @@
-# 11 - Testing with Mocha, Chai, and Sinon
+# 11 - Testing con Mocha, Chai, e Sinon
 
-## Mocha and Chai
+## Mocha e Chai
 
-- Create an `src/test` folder. This folder will mirror our application folder structure, so create a `src/test/client` folder as well (feel free to add `server` and `shared` if you want, but we're not going to write tests for these).
+- Crea una cartella `src/test`. Questa cartella rispecchiera' la struttura delle cartelle della nostra applicazione, crea quindi anche `src/test/client` (se vuoi puoi aggiungere anche `server` e `shared`, ma non scriveremo dei test per quelle).
 
-- In `src/test/client`, create a `state-test.js` file, which we are going to use to test our Redux application life cycle.
+- In `src/test/client`, crea `state-test.js` che utilizzeremo per testare il ciclo della nostra applicazione Redux.
 
-We are going to use [Mocha](http://mochajs.org/) as our main testing framework. Mocha is easy to use, has tons of features, and is currently the [most popular JavaScript testing framework](http://stateofjs.com/2016/testing/). It is very flexible and modular. In particular, it lets you use any assertion library you want. [Chai](http://chaijs.com/) is a great assertion library that has a lot of [plugins](http://chaijs.com/plugins/) available and lets you choose between different assertion styles.
+Useremo [Mocha](http://mochajs.org/) come framework di test principale. Mocha e' semplice da usare, ha molte funzionalita', ed e' attualmente il [framework di test per JavaScript piu' popolare](http://stateofjs.com/2016/testing/). E' molto flessibile e modulare. In particolare, ti permette di utilizzare la libreria di assert che vuoi. [Chai](http://chaijs.com/) e' un'ottima libreria di assert, sono disponibili molti [plugin](http://chaijs.com/plugins/) e ti permette di scegliere diversi stili di assert.
 
-- Let's install Mocha and Chai by running `yarn --dev mocha chai`
+- Installiamo Mocha e Chai eseguendo `yarn --dev mocha chai`
 
-In `state-test.js`, write the following:
+In `state-test.js`, scrivi:
 
 ```javascript
 /* eslint-disable import/no-extraneous-dependencies, no-unused-expressions */
@@ -42,17 +42,17 @@ describe('App State', () => {
   });
 });
 ```
-Alright, let's analyze this whole thing.
+OK, analizziamo il tutto.
 
-First, notice how we import the `should` assertion style from `chai`. This lets us assert things using a syntax like `mynumber.should.equal(3)`, pretty neat. In order to be able to call `should` on any object, we need to run the function `should()` before anything. Some of these assertion are *expressions*, like `mybook.should.be.true`, which will make ESLint grumpy, so we've added an ESLint comment at the top to disable the `no-unused-expressions` rule in this file.
+Innanzitutto, nota come importiamo lo stile di assert `should` da `chai`. Questo ci permette di testare cose come `mynumber.should.equal(3)`, abbastanza chiaro. Per chiamare `should` su un qualsiasi oggetto, dobbiamo eseguire la funzione `should()` prima di qualsiasi altra cosa. Alcune di queste verifiche sono *espressioni*, come `mybook.should.be.true`, che faranno arrabbiare ESLint, abbiamo quindi aggiunto un commento ESLint in cima al file, in modo da disabilitare la regola `no-unused-expressions`.
 
-Mocha tests work like a tree. In our case, we want to test the `makeBark` function which should affect the `dog` attribute of the application state, so it makes sense to use the following hierarchy of tests: `App State > Dog > makeBark`, that we declare using `describe()`. `it()` is the actual test function and `beforeEach()` is a function that is executed before each `it()` test. In our case, we want a fresh new store before running each test. We declare a `store` variable at the top of the file because it should be useful in every test of this file.
+I test di Mocha funzionano ad albero. Nel nostro caso vogliamo testare la funzione `makeBark`, che dovrebbe modificare l'attributo `dog` dello stato dell'applicazione, ha quindi senso utilizzare la seguente sequenza dii test: `App State > Dog > makeBark`, che dichiariamo utilizzando `describe()`. `it()` e' la funzione di test effettiva, `beforeEach()` e' una funzione che viene richiamata prima di ogni test `it()`. Nel nostro caso vogliamo un nuovo store prima dell'esecuzione di un nuovo test. Dichiariamo una variabile `store` all'inizio del file perche' tornera' utile in ogni test successivo.
 
-Our `makeBark` test is very explicit, and the description provided as a string in `it()` makes it even clearer: we test that `hasBarked` go from `false` to `true` after calling `makeBark`.
+Il nostro test per `makeBark` e' molto esplicito, e la descrizione, inserita come stringa in `it()`, lo rende ancora piu' chiaro: verifichiamo che `hasBarked` va da `false` a `true` dopo aver chiamato `makeBark`.
 
-Alright, let's run this test!
+Bene, eseguiamo questo test!
 
-- Create the following `test` task, which relies on the `gulp-mocha` plugin:
+- Crea il task `test` seguente, che utilizza il plugin `gulp-mocha`:
 
 ```javascript
 import mocha from 'gulp-mocha';
@@ -70,19 +70,19 @@ gulp.task('test', ['build'], () =>
 );
 ```
 
-- Run `yarn add --dev gulp-mocha` of course.
+- Esegui `yarn add --dev gulp-mocha`.
 
-As you can see, tests are run on transpiled code in `lib`, which is why `build` is a prerequisite task of `test`. `build` also has a prerequisite, `lint`, and finally, we are making `test` a prerequisite of `main`, which gives us the following task cascade for the `default` task: `lint` > `build` > `test` > `main`.
+Come puoi notare, i test sono eseguiti sul codice convertito presente in `lib`, ecco perche' `build` e' un task che deve essere eseguito come prerequisito di `test`. `build` a sua volta ha un prerequisito, `lint`, ed in fine renderemo `test` un prerequisito di `main`, che ci porta ad avere la seguente cascata di task per `default`: `lint` > `build` > `test` > `main`.
 
-- Change the prerequisite of `main` to `test`:
+- Modifica il prerequisito di `main` a `test`:
 
 ```javascript
 gulp.task('main', ['test'], () => /* ... */ );
 ```
 
-- In `package.json`, replace the current `"test"` script by: `"test": "gulp test"`. This way you can use `yarn test` to just run your tests. `test` is also the standard script that will be automatically called by tools like continuous integration services for instance, so you should always bind your test task to it. `yarn start` will run the tests before building the Webpack client bundle as well, so it will only build it if all tests pass.
+- In `package.json`, sostituisci lo script `"test"` attuale con: `"test": "gulp test"`. In questo modo puoi eseguire `yarn test` per lanciare semplicemente i test. `test` e' inoltre lo script standard che viene lanciato dai tool utilizzati nei servizi di continuous integration, dovresti quindi collegarci sempre i tuoi test. `yarn start` eseguira' inoltre i test prima di fare la build Webpack del client, lo generera' quindi se tutti i test hanno successo.
 
-- Run `yarn test` or `yarn start`, and it should print the result for our test, hopefully green.
+- Esegui `yarn test` o `yarn start`, e dovrebbe uscire il risultato dei nostri test, si sprea che sia verde.
 
 ## Sinon
 
