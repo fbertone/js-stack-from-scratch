@@ -86,11 +86,11 @@ gulp.task('main', ['test'], () => /* ... */ );
 
 ## Sinon
 
-In some cases, we want to be able to *fake* things in a unit test. For instance, let's say we have a function, `deleteEverything`, which contains a call to `deleteDatabases()`. Running `deleteDatabases()` causes a lot of side-effects, which we absolutely don't want to happen when running our test suite.
+In alcuni casi avremo la necessita' di *falsificare* cose per eseguire un test. Ad esempio, immaginiamo di avere una funzione, `deleteEverything`, che contiene una chiamata a `deleteDatabases()`. Eseguire realmente `deleteDatabases()` causerebbe molti effetti secondari, cosa che non vogliamo succeda quando eseguiamo dei test.
 
-[Sinon](http://sinonjs.org/) is a testing library that offers **Stubs** (and a lot of other things), which allow us to neutralize `deleteDatabases` and simply monitor it without actually calling it. This way we can test if it got called, or which parameters it got called with for instance. This is typically very useful to fake or avoid AJAX calls - which can cause side-effects on the back-end.
+[Sinon](http://sinonjs.org/) e' una libreria di test che offre la possibilita' di creare **Stubs** (oltre a molte altre cose), che ci permette di neutralizzare `deleteDatabases` semplicemente monitorandola senza andarla ad eseguire realmente. In questo modo possiamo verificare se e' stata chiamata, oppure, ad esempio, con quali parametri e' stata richiamata. Questo tipicamente e' molto utile per simulare chiamate AJAX - che possono avere molti effetti sul back-end.
 
-In the context of our app, we are going to add a `barkInConsole` method to our `Dog` class in `src/shared/dog.js`:
+INel contesto della nostra applicazione, aggiungeremo un metodo `barkInConsole` alla nostra classe `Dog` in `src/shared/dog.js`:
 
 ```javascript
 class Dog {
@@ -112,9 +112,9 @@ class Dog {
 export default Dog;
 ```
 
-If we run `barkInConsole` in a unit test, `console.log()` will print things in the terminal. We are going to consider this to be an undesired side-effect in the context of our unit tests. We are interested in knowing if `console.log()` *would have normally been called* though, and we want to test what parameters it *would have been called with*.
+Se eseguiamo `barkInConsole` in un test, `console.log()` scrivera' delle cose nel terminale. Nel contesto dei nostri test, questo e' considerato un effetto indesiderato. Siamo tuttavia interessati a conoscere se `console.log()` *sarebbe stata di norma chiamata*, e vogliamo verificare con quali parametri *sarebbe stata chiamata*.
 
-- Create a new `src/test/shared/dog-test.js` file, and add write the following:
+- Crea un nuovo file `src/test/shared/dog-test.js` e aggiungi quanto segue:
 
 ```javascript
 /* eslint-disable import/no-extraneous-dependencies, no-console */
@@ -142,16 +142,16 @@ describe('Shared', () => {
 });
 ```
 
-Here, we are using *stubs* from Sinon, and a Chai plugin to be able to use Chai assertions on Sinon stubs and such.
+Qua abbiamo utilizzato delle *stubs* di Sinon, ed un plugin di Chai per poter eseguire delle verifiche di Chai sulle stub di Sinon.
 
-- Run `yarn add --dev sinon sinon-chai` to install these libraries.
+- Esegui `yarn add --dev sinon sinon-chai` per installare queste librerie.
 
-So what is new here? Well first of all, we call `chai.use(sinonChai)` to activate the Chai plugin. Then, all the magic happens in the `it()` statement: `stub(console, 'log')` is going to neutralize `console.log` and monitor it. When `new Dog('Test Toby').barkInConsole()` is executed, a `console.log` is normally supposed to happen. We test this call to `console.log` with `console.log.should.have.been.calledWith()`, and finally, we `restore` the neutralized `console.log` to make it work normally again.
+Cosa c'e' di nuovo? Prima di tutto, chiamiamo `chai.use(sinonChai)` per attivare il plugin di Chai. Poi tutta la magia avviene nel costrutto `it()`: `stub(console, 'log')` serve a neutralizzare `console.log` e monitorarla. Quando `new Dog('Test Toby').barkInConsole()` viene eseguita, si suppone che avvenga una `console.log`. Testiamo questa chiamata a `console.log` tramite `console.log.should.have.been.calledWith()`, ed infine facciamo un `restore` della `console.log` neutralizzata, in modo da farla nuovamente funzionare.
 
-**Important note**: Stubbing `console.log` is not recommended, because if the test fails, `console.log.restore()` is never called, and therefore `console.log` will remain broken for the rest of the command you executed in your terminal! It won't even print the error message that caused the test to fail, so it leaves you with very little information about what happened. That can be quite confusing. It is a good example to illustrate stubs in this simple app though.
+**Nota importante**: Fare lo stub di `console.log` non e' raccomandabile, perche' se il test fallisce, `console.log.restore()` non viene mai chiamata, di conseguenza `console.log` rimarra' non funzionante per i successivi comandi che andrai ad eseguire sul terminale! Non riportera' neppure l'errore che ha fatto fallire il test, lasciandoti quindi con poche informazioni su quello che e' successo. Questo puo' confonderti abbastanza. Tuttavia e' un buon esempio per dimostrare l'utilizzo delle stub in questo contesto.
 
-If everything went well in this chapter, you should have 2 passing tests.
+Se tutto e' andato per il meglio in questo capitolo, dovresti avere due test passati con successo.
 
-Next section: [12 - Type Checking with Flow](/tutorial/12-flow)
+Prossima sezione: [12 - Type Checking con Flow](/tutorial/12-flow)
 
-Back to the [previous section](/tutorial/10-immutable-redux-improvements) or the [table of contents](https://github.com/verekia/js-stack-from-scratch).
+Torna alla [sezione precedente](/tutorial/10-immutable-redux-improvements) o all'[indice](https://github.com/fbertone/js-stack-from-scratch).
