@@ -1,12 +1,12 @@
 # 12 - Flow
 
-[Flow](https://flowtype.org/) is a static type checker. It detects inconsistent types in your code and you can add explicit type declarations in it via annotations.
+[Flow](https://flowtype.org/) é un controllore di tipi di dato statico. Riconosce le inconsistenze nei tipi di dato del tuo codice e puoi aggiungere delle dichiarazioni esplicite dei tipi di dato da utilizzare tramite le sue annotazioni.
 
-- In order for Babel to understand and remove Flow annotations during the transpilation process, install the Flow preset for Babel by running `yarn add --dev babel-preset-flow`. Then, add `"flow"` under `babel.presets` in your `package.json`.
+- Per fare in modo che Babel comprenda e rimuova le annotazioni di Flow durante il processo di transpiling, installa il preset di Flow per Babel eseguendo `yarn add --dev babel-preset-flow`. Poi, aggiungi `"flow"` alla voce `babel.presets`  nel `package.json`.
 
-- Create an empty `.flowconfig` file at the root of your project
+- Crea un file vuoto `.flowconfig` nella cartella di base del tuo progetto
 
-- Run `yarn add --dev gulp-flowtype` to install the Gulp plugin for Flow, and add `flow()` to your `lint` task:
+- Esegui `yarn add --dev gulp-flowtype` per installare il plugin di Gulp per Flow, e aggiungi `flow()` nel task `lint`:
 
 ```javascript
 import flow from 'gulp-flowtype';
@@ -26,11 +26,11 @@ gulp.task('lint', () =>
 );
 ```
 
-The `abort` option is to interrupt the Gulp task if Flow detects an issue.
+L'opzione `abort` serve ad interrompere il task Gulp quando Flow riscontra un problema.
 
-Alright, we should be able to run Flow now.
+Bene, dovremmo essere in grado di eseguire Flow.
 
-- Add Flow annotations to `src/shared/dog.js` like so:
+- Aggiungi le annotazioni di Flow nel file `src/shared/dog.js` in questo modo:
 
 ```javascript
 // @flow
@@ -57,35 +57,35 @@ class Dog {
 export default Dog;
 ```
 
-The `// @flow` comment tells Flow that we want this file to be typechecked. For the rest, Flow annotations are typically a colon after a function parameter or a function name. Check the documentation for more details.
+Il commento `// @flow` dice a Flow che vogliamo verificare i tipi di dato in questo file. Per il resto, le annotazioni di Flow si fanno con un simbolo di duepunti sopo il nome di un parametro o una variabile. Controlla la documentazione per avere altri dettagli.
 
-Now if you run `yarn start`, Flow will work fine, but ESLint is going to complain about that non-standard syntax we're using. Since Babel's parser is all up-and-running with parsing Flow content thanks to the `babel-preset-flow` plugin we installed, it'd be nice if ESLint could rely on Babel's parser instead of trying to understand Flow annotations on its own. That's actually possible using the `babel-eslint` package. Let's do this.
+Adesso se esegui `yarn start`, Flow funzionerá correttamente, ma ESLint si lamenterá della sintassi non standard che stiamo utilizzando. Siccome il parser di Babel é pronto per macinare le annotazioni di Flow grazie al plugin `babel-preset-flow` che abbiamo installato, sarebbe bello se ESLint potesse fare riferimento al parser di Babel invece di cercare di comprendere le annotazioni di Flow per conto suo. Questo é possibile utilizzando il pacchetto `babel-eslint`. Facciamolo.
 
-- Run `yarn add --dev babel-eslint`
+- Esegui `yarn add --dev babel-eslint`
 
-- In `package.json`, under `eslintConfig`, add the following property: `"parser": "babel-eslint"`
+- In `package.json`, alla voce `eslintConfig`, aggiungi questa proprietá: `"parser": "babel-eslint"`
 
-`yarn start` should now both lint and typecheck your code fine.
+`yarn start` adesso dovrebbe eseguire sia il lint che il typecheck del codice.
 
-Now that ESLint and Babel are able to share a common parser, we can actually get ESLint to lint our Flow annotations via the `eslint-plugin-flowtype` plugin.
+Adesso che ESLint e Babel condividono lo stesso parser, possiamo fare in modo che ESLint esegua il lint delle nostre annotazioni Flow tramite il plugin `eslint-plugin-flowtype`.
 
-- Run `yarn add --dev eslint-plugin-flowtype` and add `"flowtype"` under `eslintConfig.plugins` in `package.json`, and add `"plugin:flowtype/recommended"` under `eslintConfig.extends` in an array next to `"airbnb"`.
+- Esegui `yarn add --dev eslint-plugin-flowtype` e aggiungi `"flowtype"` alla voce `eslintConfig.plugins` in `package.json`, e aggiungi `"plugin:flowtype/recommended"` alla voce `eslintConfig.extends` in un array vicino a `"airbnb"`.
 
-Now if you type `name:string` as an annotation, ESLint should complain that you forgot a space after the colon for instance.
+Adesso se scrivi `name:string` come annotazione, ESLint dovrebbe ad esempio lamentarsi del fatto che hai dimenticato uno spazio dopo il duepunti.
 
-**Note**: The `"parser": "babel-eslint"` property that I made you write in `package.json` is actually included in the `"plugin:flowtype/recommended"` config, so you can now remove it for a more minimal `package.json`. Leaving it there is more explicit though, so that's up to your personal preference. Since this tutorial is about the most minimal setup, I removed it.
+**Nota**: La proprietá `"parser": "babel-eslint"` che ti ho fatto scrivere in `package.json` é inclusa nella configurazione `"plugin:flowtype/recommended"`, puoi quindi rimuoverla per ottimizzare il file `package.json`. Se la lasci lí peró rendi il tutto piú esplicito, dipende quindi da te. Siccome questa guida si riferisce alla configurazione minimale, io lo tolgo.
 
-- You can now add `// @flow` in every `.js` and `.jsx` file under `src`, run `yarn test` or `yarn start`, and add type annotations everywhere Flow asks you to do so.
+- Adesso puoi aggiungere `// @flow` in ogni file `.js` e `.jsx` nella cartella `src`, eseguire `yarn test` o `yarn start`, aggiungere annotazioni come ti chiede di fare Flow.
 
-One counterintuitive case is the following, for `src/client/component/message.jsx`:
+Un caso non intuitivo é questo, per `src/client/component/message.jsx`:
 
 ```javascript
 const Message = ({ message }: { message: string }) => <div>{message}</div>;
 ```
 
-As you can see, when destructuring function parameters, you must annotate the extracted properties using a sort of object literal notation.
+Come puoi vedere, quando destrutturi i parametri delle funzioni, devi annotare le proprietá estratte utilizzando una sorta di oggetto.
 
-Another case you will encounter is that in `src/client/reducers/dog-reducer.js`, Flow will complain about Immutable not having a default export. This issue is discussed in [#863 on Immutable](https://github.com/facebook/immutable-js/issues/863), which highlights 2 workarounds:
+Un altro caso che incontrerai é quello in `src/client/reducers/dog-reducer.js`, Flow si lamenterá che Immutable non ha un export di default. Questo problema é discusso nel [#863 su Immutable](https://github.com/facebook/immutable-js/issues/863), che mostra 2 workaround:
 
 ```javascript
 import { Map as ImmutableMap } from 'immutable';
@@ -93,16 +93,16 @@ import { Map as ImmutableMap } from 'immutable';
 import * as Immutable from 'immutable';
 ```
 
-Until Immutable officially adresses the issue, just pick whichever looks better to you when importing Immutable components. I'm personally going for `import * as Immutable from 'immutable'` since it's shorter and won't require refactoring the code when this issue gets fixed.
+Fino a quando Immutable non risolve ufficialmente questo problema, scegli semplicemente quello che ti sembra migliore mentre importi componenti Immutable. Io personalmente ho scelto `import * as Immutable from 'immutable'` siccome é piú corto e non richiederá di fare un refactoring del codice quando il problema verrá risolto.
 
-**Note**: If Flow detects type errors in your `node_modules` folder, add an `[ignore]` section in your `.flowconfig` to ignore the packages causing issues specifically (do not ignore the entire `node_modules` directory). It could look like this:
+**Nota**: Se Flow riscontra errori nei controlli dei tipi nella cartella `node_modules`, aggiungi una sezione `[ignore]` nel `.flowconfig` per ignorare specificamente i pacchetti che causano gli errori (non ignorare completamente la cartella `node_modules`). Potrebbe assomigliare a qualcosa come:
 ```
 [ignore]
 
 .*/node_modules/gulp-flowtype/.*
 ```
-In my case, the `linter-flow` plugin for Atom was detecting type errors in the `node_modules/gulp-flowtype` directory, which contains files annotated with `// @flow`.
+Nel mio caso, il plugin `linter-flow` per Atom riconosceva degli errori nella cartella `node_modules/gulp-flowtype`, che contiene annotazioni per Flow del tipo `// @flow`.
 
-You now have a bullet-proof code that is linted, typechecked, and tested, good job!
+Adesso hai un codice irrobustito da lint, typecheck, e test, ottimo lavoro!
 
-Back to the [previous section](/tutorial/11-testing-mocha-chai-sinon) or the [table of contents](https://github.com/fbertone/js-stack-from-scratch).
+Torna alla [sezione precedente](/tutorial/11-testing-mocha-chai-sinon) o all'[indice](https://github.com/fbertone/js-stack-from-scratch).
