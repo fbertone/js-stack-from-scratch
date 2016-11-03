@@ -43,7 +43,7 @@ npm-debug.log
 yarn-error.log
 ```
 
-**Nota**: Se dai un'occhiata a file `package.json` che fornisco, vedrai uno script `tutorial-test` in ogni capitolor. Questi script mi permettono di verificare che i capitoli sono a posto eseguendo `yarn && yarn start`. Puoi cancellarli tranquillamente nei tuoi progetti.
+**Nota**: Se dai un'occhiata a file `package.json` che fornisco, vedrai uno script `tutorial-test` in ogni capitolo. Questi script mi permettono di verificare che i capitoli sono a posto eseguendo `yarn && yarn start`. Puoi cancellarli tranquillamente nei tuoi progetti.
 
 Prossima sezione: [2 - Installare ed usare un pacchetto](/tutorial/2-packages)
 
