@@ -1,4 +1,4 @@
-# 10 - Immutable JS e Redux Improvements
+# 10 - Immutable JS e Migliorie Redux
 
 ## Immutable JS
 
@@ -10,7 +10,9 @@ Per prima cosa aggiungeremo **Immutable JS** al nostro codice. Immutable é una 
 const obj = { a: 1 };
 obj.a = 2; // Mutates `obj`
 ```
-Fraremmo:
+
+Faresti:
+
 ```javascript
 const obj = Immutable.Map({ a: 1 });
 obj.set('a', 2); // Returns a new object without mutating `obj`
@@ -35,6 +37,7 @@ Utilizzeremo `Map` nel nostro codice, ma ESLint e la configurazione Airbnb si la
   ]
 }
 ```
+
 Questo fa in modo che `Map` e `List` (i due oggetti di Immutable che utilizzeremo in continuazione) siano delle eccezioni alle regole di ESLint. Questa formattazione JSON cosí prolissa é generata automaticamente da Yarn/NPM, non possiamo quindi renderla piú compatta.
 
 Ad ogni modo, torniamo a Immutable:
@@ -78,6 +81,7 @@ L'app dovrebbe ancora comportarsi esattamente come prima.
 Come puoi vedere dal pezzo di codice precedente, il nostro oggetto di stato contiene ancora l'attributo `dog` che non é immutabile. Va bene cosí, ma se vuoi manipolare esclusivamente oggetti immutabili, puoi installare il pacchetto `redux-immutable` per sostituire la funzione `combineReducers` di Redux.
 
 **Opzionale**:
+
 - Esegui `yarn add redux-immutable`
 - Sostituisci la funzione `combineReducers` in `app.jsx` per usare quella importata da `redux-immutable`.
 - In `bark-message.js` sostituisci `state.dog.get('hasBarked')` con `state.getIn(['dog', 'hasBarked'])`.
@@ -97,6 +101,6 @@ export const makeBark = createAction(MAKE_BARK, () => true);
 
 - Non dimenticarti di eseguire `yarn add redux-actions`.
 
-Prossima sezione: [11 - Testing with Mocha, Chai, and Sinon](/tutorial/11-testing-mocha-chai-sinon)
+Prossima sezione: [11 - Testare con Mocha, Chai e Sinon](/tutorial/11-testing-mocha-chai-sinon)
 
 Torna alla [sezione precedente](/tutorial/9-redux) o all'[indice](https://github.com/fbertone/js-stack-from-scratch).

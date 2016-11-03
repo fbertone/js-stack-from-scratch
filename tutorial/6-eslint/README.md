@@ -7,6 +7,7 @@ Utilizzeremo un linter per controllare il nostro codice contro potenziali proble
 Come puoi vedere, è possibile installare vari pacchetti contemporaneamente con un unico comando. Tutti verranno aggiunti al file `package.json`, come di consueto.
 
 Nel `package.json`, aggiungi un campo `eslintConfig`:
+
 ```json
 "eslintConfig": {
   "extends": "airbnb",
@@ -15,9 +16,10 @@ Nel `package.json`, aggiungi un campo `eslintConfig`:
   ]
 },
 ```
+
 La sezione `plugins` serve a comunicare a ESLint che vogliamo utilizzare la sintassi ES6 per gli import.
 
-**Nota**: Il file `.eslintrc.js` inserito nella cartella base del progetto può essere utilizzato in alternativa alla sezione `eslintConfig` nel `package.json`. Come per la configurazione di Babel stiamo cercando di mantenere pulita la cartella del progetto, tuttavia se hai una configurazione di ESLint complessa puoi considerare la creazione di questo file come alternativa.
+**Nota**: Un file `.eslintrc.js`, `.eslintrc.json`, oppure `. eslintrc.yaml` inserito nella cartella base del progetto può essere utilizzato in alternativa alla sezione `eslintConfig` nel `package.json`. Come per la configurazione di Babel stiamo cercando di mantenere pulita la cartella del progetto, tuttavia se hai una configurazione di ESLint complessa puoi considerare la creazione di questo file come alternativa.
 
 Creiamo adesso un task Gulp che eseguirà ESLint per noi. Installiamo il plugin ESLint per Gulp:
 
@@ -61,7 +63,7 @@ gulp.task('build', ['lint', 'clean'], () => {
 
 Un problema che vedrai è `'gulp' should be listed in the project's dependencies, not devDependencies (import/no-extraneous-dependencies)`. In questo caso si tratta di un falso problema. ESLint non è in graado di riconoscere quali file JS fanno parte della nostra build, e quali no, dovremo aiutarlo un po' utilizzando degli appositi commenti all'interno del codice. Nel `gulpfile.babel.js`, all'inizio del file aggiungi:
 
-```javascript```
+```javascript
 /* eslint-disable import/no-extraneous-dependencies */
 ```
 
@@ -111,7 +113,6 @@ L'ultima segnalazione rimasta si riferisce all'uso di `console.log()`. Diciamo c
 
 **Nota**: Questa sezione ti permette di configurare ESLint nella console. È utile poter eseguire il lint durante la build / prima di eseguire il push del codice, ma probabilmente vorrei integrarlo anche nel tuo IDE. NON utilizzare il linter nativo del tuo IDE quando usi ES6. Configuralo in modo che il linter da eseguire sia quello contenuto all'interno della cartella `node_modules`. In questo modo può utilizzare tutte le configurazioni del tuo progetto, il preset di Airbnb, etc. In caso contrario utilizzesti un linter generico.
 
-
-Prossima sezione: [7 - Client app con Webpack](/tutorial/7-client-webpack)
+Prossima sezione: [7 - App Client con Webpack](/tutorial/7-client-webpack)
 
 Torna alla [sezione precedente](/tutorial/5-es6-modules-syntax) o all'[indice](https://github.com/fbertone/js-stack-from-scratch).

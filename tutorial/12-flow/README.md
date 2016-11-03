@@ -1,4 +1,4 @@
-# 12 - Flow
+# 12 - Type Checking con Flow
 
 [Flow](https://flowtype.org/) é un controllore di tipi di dato statico. Riconosce le inconsistenze nei tipi di dato del tuo codice e puoi aggiungere delle dichiarazioni esplicite dei tipi di dato da utilizzare tramite le sue annotazioni.
 
@@ -96,11 +96,13 @@ import * as Immutable from 'immutable';
 Fino a quando Immutable non risolve ufficialmente questo problema, scegli semplicemente quello che ti sembra migliore mentre importi componenti Immutable. Io personalmente ho scelto `import * as Immutable from 'immutable'` siccome é piú corto e non richiederá di fare un refactoring del codice quando il problema verrá risolto.
 
 **Nota**: Se Flow riscontra errori nei controlli dei tipi nella cartella `node_modules`, aggiungi una sezione `[ignore]` nel `.flowconfig` per ignorare specificamente i pacchetti che causano gli errori (non ignorare completamente la cartella `node_modules`). Potrebbe assomigliare a qualcosa come:
-```
+
+```flowconfig
 [ignore]
 
 .*/node_modules/gulp-flowtype/.*
 ```
+
 Nel mio caso, il plugin `linter-flow` per Atom riconosceva degli errori nella cartella `node_modules/gulp-flowtype`, che contiene annotazioni per Flow del tipo `// @flow`.
 
 Adesso hai un codice irrobustito da lint, typecheck, e test, ottimo lavoro!

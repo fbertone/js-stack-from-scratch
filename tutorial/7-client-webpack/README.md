@@ -37,6 +37,7 @@ Aggiungi all'interno di `package.json`, in `eslintConfig`:
   "browser": true
 }
 ```
+
 In questo modo potremo utilizzare variabili come `window` o `document`, che sono sempre accessibili nel browser, senza che ESLint si lamenti.
 
 Se vuoi utilizzare alcune delle funzionalità più recenti di ES nel tuo client, come le `Promise`, dovrei includere i [Polyfill di Babel](https://babeljs.io/docs/usage/polyfill/) nel tuo codice.
@@ -49,7 +50,7 @@ E in `app.js`, prima di qualunque altra cosa, aggiungi:
 import 'babel-polyfill';
 ```
 
-Includere i polyfill aumenterà di circa 300KB il tuo client finale, quindi non farlo se non devi utilizzare nessuna delle funzionalità che fornisce!
+Includere i polyfill aumenterà la dimensione finale tuo client, quindi aggiungili solo se devi utilizzare le funzionalità che ricopre. Per fornire un codice robusto in questa guida, io li includo, appariranno in alcuni esempi nei prossimi capitoli.
 
 ## Webpack
 
@@ -173,7 +174,7 @@ gulp.task('main', ['lint', 'clean'], () =>
 
 **Nota**: Il nostro task `build` attualmente transpila il codice ES6 a ES5 per ogni file `.js` contenuti in `src`. Adesso che abbiamo suddiviso il nostro codice in `server`, `shared`, e `client`, possiamo fare in modo che questo task compili unicamente `server` e `shared` (visto che Webpacksi occupa di `client`). Tuttavia, nel capitolo dedicato al Testing, avremo bisogno di far compilare a Gulp anche la parte `client` in modo da testarlo al di fuori di Webpack. Quindi, fino a quando non raggiungerai quel capitolo, alcune fasi di build saranno duplicate. Sonon sicuro che possiamo essere tutti d'accordo che non ci sono problemi. Effettivamente non utilizzeremo più il task `build` e la cartella `lib` fino a reggiungere quel capitolo, perchè per il momento ci occuperemo unicamente di impacchettare il codice client.
 
-- Esegui `yarn start`, dovresti vedere Webpack che costruisce il file `client-bundle.js` e aprendo `index.html`nel browser dovresti vederey "Wah wah, I am Browser Toby".
+- Esegui `yarn start`, dovresti vedere Webpack che costruisce il file `client-bundle.js`. Aprendo `index.html`nel browser dovresti vederey "Wah wah, I am Browser Toby".
 
 Un'ultima cosa: a differenza della cartella `lib` i file `dist/client-bundle.js` e `dist/client-bundle.js.map` non vengono cancellati dal nostro task `clean` prima di ogni build.
 

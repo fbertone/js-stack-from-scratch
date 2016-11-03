@@ -55,7 +55,6 @@ Installa il preset React Babel, che permettera a Babel di convertire la sintassi
 
 Adesso, dopo aver eseguito `yarn start`, se apriamo `index.html` dovremmo vedere la scritta "The dog says: Wah wah, I am Browser Toby" inserita da React.
 
-
 Prossima sezione: [9 - Redux](/tutorial/9-redux)
 
 Torna alla [sezione precedente](/tutorial/7-client-webpack) o all'[indice](https://github.com/fbertone/js-stack-from-scratch).

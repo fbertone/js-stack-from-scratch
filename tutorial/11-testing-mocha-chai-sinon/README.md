@@ -1,4 +1,4 @@
-# 11 - Testing con Mocha, Chai, e Sinon
+# 11 - Testare con Mocha, Chai, e Sinon
 
 ## Mocha e Chai
 
@@ -8,7 +8,7 @@
 
 Useremo [Mocha](http://mochajs.org/) come framework di test principale. Mocha e' semplice da usare, ha molte funzionalita', ed e' attualmente il [framework di test per JavaScript piu' popolare](http://stateofjs.com/2016/testing/). E' molto flessibile e modulare. In particolare, ti permette di utilizzare la libreria di assert che vuoi. [Chai](http://chaijs.com/) e' un'ottima libreria di assert, sono disponibili molti [plugin](http://chaijs.com/plugins/) e ti permette di scegliere diversi stili di assert.
 
-- Installiamo Mocha e Chai eseguendo `yarn --dev mocha chai`
+- Installiamo Mocha e Chai eseguendo `yarn add --dev mocha chai`
 
 In `state-test.js`, scrivi:
 
@@ -42,6 +42,7 @@ describe('App State', () => {
   });
 });
 ```
+
 OK, analizziamo il tutto.
 
 Innanzitutto, nota come importiamo lo stile di assert `should` da `chai`. Questo ci permette di testare cose come `mynumber.should.equal(3)`, abbastanza chiaro. Per chiamare `should` su un qualsiasi oggetto, dobbiamo eseguire la funzione `should()` prima di qualsiasi altra cosa. Alcune di queste verifiche sono *espressioni*, come `mybook.should.be.true`, che faranno arrabbiare ESLint, abbiamo quindi aggiunto un commento ESLint in cima al file, in modo da disabilitare la regola `no-unused-expressions`.
@@ -52,7 +53,7 @@ Il nostro test per `makeBark` e' molto esplicito, e la descrizione, inserita com
 
 Bene, eseguiamo questo test!
 
-- Crea il task `test` seguente, che utilizza il plugin `gulp-mocha`:
+- In `gulpfile.babel.js`, crea il seguente task `test` , che utilizza il plugin `gulp-mocha`:
 
 ```javascript
 import mocha from 'gulp-mocha';

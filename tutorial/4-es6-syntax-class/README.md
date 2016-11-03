@@ -29,12 +29,12 @@ const toby = new Dog('Toby');
 
 console.log(toby.bark());
 ```
+
 Come puoi vedere, a differenza del pacchetto `color` che abbiamo utilizzato in precedenza, quando utilizziamo un modulo scritto da noi utilizziamo il prefisso `./` nella funzione `require()`.
 
 - Esegui `yarn start` e dovresti ottenere 'Wah wah, I am Toby'.
 
 - Dai un'occhiata al codice generato in `lib` per vedere com'è il codice generato (`var` al posto di `const` ad esempio).
-
 
 Prossima sezione: [5 - La sintassi ES6 per i moduli](/tutorial/5-es6-modules-syntax)
 

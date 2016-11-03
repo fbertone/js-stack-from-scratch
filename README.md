@@ -1,5 +1,7 @@
 # Stack JavaScript da Zero
 
+[![Build Status](https://travis-ci.org/verekia/js-stack-from-scratch.svg?branch=master)](https://travis-ci.org/verekia/js-stack-from-scratch) [![Entra in chat (in inglese) su https://gitter.im/js-stack-from-scratch/Lobby](https://badges.gitter.im/js-stack-from-scratch/Lobby.svg)](https://gitter.im/js-stack-from-scratch/Lobby)
+
 [![Yarn](/img/yarn.png)](https://yarnpkg.com/)
 [![React](/img/react.png)](https://facebook.github.io/react/)
 [![Gulp](/img/gulp.png)](http://gulpjs.com/)
@@ -10,16 +12,18 @@
 [![Chai](/img/chai.png)](http://chaijs.com/)
 [![Flow](/img/flow.png)](https://flowtype.org/)
 
-[![Build Status](https://travis-ci.org/verekia/js-stack-from-scratch.svg?branch=master)](https://travis-ci.org/verekia/js-stack-from-scratch)
+Benvenuto a questa guida sul Javascript moderno: **Stack Javascript da zero**. 
 
-Benvenuto a questa guida sul Javascript moderno. 
-Puoi trovare la versione originale, in inglese, qua: [**JavaScript Stack from Scratch**](https:/github.com/verekia/js-stack-from-scratch).
+Puoi trovare la versione originale della guida, in inglese, qua: [**JavaScript Stack from Scratch**](https:/github.com/verekia/js-stack-from-scratch).
 
-Questa è una guida rapida per la creazione da zero di uno stack Javascript. Ti spiega come utilizzare **ES6, Babel, Gulp, ESLint, React, Redux, Webpack, Immutable, Mocha, Chai, Sinon, and Flow**. Per seguire questa guida dovresti avere già qulche fondamento di programmazione generica e alcune basi di Javascript. **Ti spiegherò come collegare tutti questi strumenti assieme** e  inserirò un esempio semplice per ogni strumento trattato. Puoi vedere questa guida come un modo per *costruirti il tuo boilerplate personalizzato*.
+Questa è una guida rapida per la creazione da zero di uno stack Javascript. Per seguire questa guida dovresti avere già qulche fondamento di programmazione generica e alcune basi di Javascript. Questa guida é focalizzata su come **collegare assieme vari tool di sviluppo** e fornesce un esempio il piú semplice possibile per ogni strumento trattato. Puoi vedere questa guida come un modo per *costruirti da zero il tuo boilerplate personalizzato*.
+
+
+Non avrai bisogno di utilizzare interamente questo stack se vuoi realizzare una semplice pagina web con alcune interazioni JS (una combinazione di Browserify/Webpack + Babel + jQuery é sufficiente per scrivere codice ES6 in diversi file con compilazione da linea di comando), ma se vuoi realizzare una web app scalabile questo tutorial sará perfetto.
 
 Siccome lo scopo di questa guida è di utilizzare vari strumenti in sequenza, non entrerò nei dettagli di ciascuno strumento. Se ti interessano dei dettagli maggiori o vuoi imparare più a fondo il funzionamento di un tool specifico puoi fare riferimento alla sua documentazione ufficiale o puoi cercare altri tutorial più specifici. 
 
-Una parte sostanziosa di questa guida fa riferimento a React. Molti tutoral su React saltano completamente la spiegazione della configurazione iniziale, il che porta su una cattiva strada chi sta iniziando ad imparare. Invece di fornire semplicemente una configurazione "prefabbricata", l'impostazione che utilizzerò é di costruire delle fondamenta più semplici possibile per permettere di comprendere realmente quello che sta succedendo.
+Una parte sostanziosa di questa guida fa riferimento a React. Se stai iniziando adesso e vuoi solo imparare React, [create-react-app](https://github.com/facebookincubator/create-react-app) ti preparerá molto rapidamente con un ambiente React preconfigurato. Consiglierei questo approccio ad esempio a qualcuno che entra in un team che sta giá utilizzando React e deve mettersi al passo utilizzando un ambiente per fare delle prove. In questa guida non ti faró utilizzare una configurazione prefabbricata, perché voglio che tu comprenda realmente quello che sta succedendo.
 
 Esempi di codice sono disponibili in ogni capitolo e puoi avviarli utilizzando il comando `yarn && yarn start` oppure `npm install && npm start`. Ti suggerisco di riscrivere tu tutto da zero seguendo le **istruzioni passo a passo** di ogni capitolo.
 
@@ -49,11 +53,11 @@ Il codice presentato in questa guida funziona in Linux, macOS e Windows.
 
 [9 - Redux](/tutorial/9-redux)
 
-[10 - Immutable JS e Redux Improvements](/tutorial/10-immutable-redux-improvements)
+[10 - Immutable JS e Migliorie di Redux](/tutorial/10-immutable-redux-improvements)
 
 [11 - Testare con Mocha, Chai, e Sinon](/tutorial/11-testing-mocha-chai-sinon)
 
-[12 - Controlli di tipo con Flow](/tutorial/12-flow)
+[12 - Type Checking con Flow](/tutorial/12-flow)
 
 ## Prossimamente
 
@@ -61,9 +65,12 @@ Ambienti di sviluppo e produzione, Express, React Router, Server-Side Rendering,
 
 ## Traduzioni
 
-- [Chinese](https://github.com/pd4d10/js-stack-from-scratch) by [@pd4d10](http://github.com/pd4d10)
+- [English](https:/github.com/verekia/js-stack-from-scratch) by [@verekia](https://twitter.com/verekia)
+- [中文](https://github.com/pd4d10/js-stack-from-scratch) by [@pd4d10](http://github.com/pd4d10)
+- [Italiano](https://github.com/fbertone/js-stack-from-scratch) by [Fabrizio Bertone](https://github.com/fbertone)
+- [日本語](https://github.com/takahashim/js-stack-from-scratch) by [@takahashim](https://github.com/takahashim)
 
-If you want to add your translation, please read the [translation recommendations](/how-to-translate.md) to get started!
+Se vuoi aggiungere una traduzione fai riferimento a [translation recommendations](https://github.com/verekia/js-stack-from-scratch/how-to-translate.md) per cominciare!
 
 ## Credits
 

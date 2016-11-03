@@ -1,6 +1,6 @@
 # 9 - Redux
 
-In questo capitolo (che é il piú difficile finora) aggiungeremo [Redux](http://redux.js.org/) alla nostra applicazione e lo collegheremo a React. Redux controlla lo stato della tua applicazione. É composto da uno **store** che e'un oggetto Javascript che rappresenta lo stato dell'app, **actions**  che sono tipicamente scatenate dagli utenti e **reducers** che possono essere visto come handler delle azioni. I reducer modificano lo stato dell'applicazione (lo *store*) e quando lo stato dell'applicazione viene modificato delle cose succedono nell'app. Una buona rappresentazione grafica di Redux é disponibile [qua](http://slides.com/jenyaterpil/redux-from-twitter-hype-to-production#/9).
+In questo capitolo (che é il piú difficile finora) aggiungeremo [Redux](http://redux.js.org/) alla nostra applicazione e lo collegheremo a React. Redux controlla lo stato della tua applicazione. É composto da uno **store** che e'un oggetto Javascript che rappresenta lo stato dell'app, **azioni**  che sono tipicamente scatenate dagli utenti e **reducers** che possono essere visti come handler delle azioni. I reducer modificano lo stato dell'applicazione (lo *store*) e quando lo stato dell'applicazione viene modificato delle cose succedono nell'app. Una buona rappresentazione grafica di Redux é disponibile [qua](http://slides.com/jenyaterpil/redux-from-twitter-hype-to-production#/9).
 
 Per dimostrare come utilizzare Redux nel modo piú semplice possibile, la lostra app consiste in un messaggio ed un bottone. Il messaggio indica se il cane ha abbaiato o no (inizialmente lo stato é impostato su no) ed il pulsante fa abbaiare il cane, aggiornando di conseguenza il messaggio.
 
@@ -20,6 +20,7 @@ export const makeBark = () => ({
   payload: true,
 });
 ```
+
 Qua definiremo un tipo di azione, `MAKE_BARK`, e una funzione (anche conosciuta come *action creator*) che scatena un'azione `MAKE_BARK` chiamata `makeBark`. Entrambe sono esportate perché ci serviranno in altri file. Questa azione implementa una modello di [Azione Flux Standard](https://github.com/acdlite/flux-standard-action), ecco perché ha degli attributi `type` e `payload`.
 
 - In `reducers`, crea `dog-reducer.js`:
@@ -153,6 +154,6 @@ export default connect(mapStateToProps)(Message);
 
 - Puoi eseguire `yarn start` ed aprire `index.html`. Dovresti vedere "The dog did not bark" ed un bottone. Quando clicki sul bottone, il messaggio dovrebbe diventare "The dog barked".
 
-Prossima sezione: [10 - Immutable JS and Redux Improvements](/tutorial/10-immutable-redux-improvements)
+Prossima sezione: [10 - Immutable JS e Migliorie Redux](/tutorial/10-immutable-redux-improvements)
 
 Torna alla [sezione precedente](/tutorial/8-react) o all'[indice](https://github.com/fbertone/js-stack-from-scratch).

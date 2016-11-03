@@ -25,7 +25,6 @@ Abbiamo utilizzato il pacchetto `color` come esempio di installazione di un semp
 
 **Nota**: Ci sono due tipi differenti di dipendenze, `"dependencies"` e `"devDependencies"`. `"dependencies"` è più generale di `"devDependencies"`, che contiene pacchetti utilizzati unicamente durante la fase di sviluppo, non in produzione (tipicamente, pacchetti per creare le build, linters, etc). Per le `"devDependencies"`, utilizzeremo il comando `yarn add --dev [package]`.
 
-
 Prossima sezione: [3 - Configurazione di ES6 con Babel e Gulp](/tutorial/3-es6-babel-gulp)
 
 Torna alla [sezione precedente](/tutorial/1-node-npm-yarn-package-json) o all'[indice](https://github.com/fbertone/js-stack-from-scratch).

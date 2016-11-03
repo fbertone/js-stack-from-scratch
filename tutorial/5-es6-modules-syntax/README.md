@@ -25,6 +25,7 @@ import Cat from './dog';
 
 const toby = new Cat('Toby');
 ```
+
 Ovviamente la maggiorparte delle volte utilizzerai lo stesso nome utilizzato dalle classe/modulo che stai importando.
 Un esempio in cui non lo facciamo è `const babel = require('gulp-babel')` nel nostro file Gulp.
 

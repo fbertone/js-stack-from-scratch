@@ -5,6 +5,7 @@ Adesso utilizzeremo la nuova sintassi di ES6, che rappresenta un notevole miglio
 - Esegui `yarn add --dev gulp`
 - Esegui `yarn add --dev gulp-babel`
 - Esegui `yarn add --dev babel-preset-latest`
+- Esegui `yarn add --dev del` (per il task `clean` come vedrai fra poco)
 - Nel `package.json`, aggiungi un campo `babel` per la configurazione di Babel. Fagli utilizzare l'ultima versione di Babel inserendo:
 
 ```json
@@ -24,7 +25,7 @@ const str = 'ES6';
 console.log(`Hello ${str}`);
 ```
 
-Stiamo utilizzando un *modello* (template) di stringa, si tratta di una nuova funzionalità di ES6 che permette di inserire variabili all'interno di una stringa utilizzando `${}`, senza dover più concatenare i vari pezzetti della stringa.
+Stiamo utilizzando un *modello* (template) di stringa, si tratta di una nuova funzionalità di ES6 che permette di inserire variabili direttamente all'interno di una stringa, senza concatenazioni,  utilizzando `${}`. Fai attenzione che le stringhe template vengono create utilizzando gli **apici inversi**.
 
 - Crea un file `gulpfile.js` contenente:
 
@@ -73,8 +74,8 @@ Prima definiamo un oggetto `paths` per memorizzare tutti i percorsi dei file e m
 Definiamo poi 5 task: `build`, `clean`, `main`, `watch`, e `default`.
 
 - `build` è dove viene chiamato Babel per trasformare tutti i nostri file sorgente nella cartella `src` e scrivere quelli trasformati in `lib`.
-- `clean` che cancella tutti i file autogenerati in `lib` prima di eseguire ogni task `build`. Questo è utile per ripulire tutti i file compilati che non sono più necessari, ad esempio perchè gli originali in `src` sono stati cancellati o rinominati , o per assicurarci che la cartella `lib` sia sempre sincronizzata con `src` nel caso in cui la build fallisca. Utilizziamo il pacchetto `del` per cancellare i file in un modo che si integra bene con il flusso di processamento di Gulp (questo è il metodo [raccomandato](https://github.com/gulpjs/gulp/blob/master/docs/recipes/delete-files-folder.md) per cancellare file con Gulp). Esegui `yarn add --dev del` per installare questo pacchetto.
-- `main` è l'equivalente di  `node .` che abbiamo utilizzato nel capitolo precedente, con l'eccezione che questa voltavogliamo eseguirlo sul file `lib/index.js`. Siccome `index.js` è il file che Node cerca di default, possiamo semplicemente scrivere `node lib` (utilizziamo la variabile `libDir` per mantenere la configurazione pulita). `require('child_process').exec` e `exec` sono delle funzioni native di Node per l'esecuzione di comandi su shell. Redirigiamo `stdout` su `console.log()` ritorniamo eventuali errori tramite la callback di `gulp.task`. Non preoccuparti se non capisci nei dettagli quello che sta succedendo, ricordati che è semplicemente l'equivalente di eseguire `node lib`.
+- `clean` cancella tutti i file autogenerati in `lib`, prima di eseguire un task `build`. Questo è utile per ripulire tutti i file compilati che non sono più necessari, ad esempio perchè gli originali in `src` sono stati cancellati o rinominati , o per assicurarci che la cartella `lib` sia sempre sincronizzata con `src` nel caso in cui la build fallisca. Utilizziamo il pacchetto `del` per cancellare i file in un modo che si integra bene con il flusso di processamento di Gulp (questo è il metodo [raccomandato](https://github.com/gulpjs/gulp/blob/master/docs/recipes/delete-files-folder.md) per cancellare file con Gulp).
+- `main` è l'equivalente di `node .` che abbiamo utilizzato nel capitolo precedente, con l'eccezione che questa volta vogliamo eseguirlo sul file `lib/index.js`. Siccome `index.js` è il file che Node cerca di default, possiamo semplicemente scrivere `node lib` (utilizziamo la variabile `libDir` per mantenere la configurazione pulita). `require('child_process').exec` e `exec` sono delle funzioni native di Node per l'esecuzione di comandi su shell. Redirigiamo `stdout` su `console.log()` ritorniamo eventuali errori tramite la callback di `gulp.task`. Non preoccuparti se non capisci nei dettagli quello che sta succedendo, ricordati che è semplicemente l'equivalente di eseguire `node lib`.
 - `watch` esegue il task `main` quando vengono riscontrate delle modifiche nei file elencati.
 - `default` è un task specifico che viene eseguito se esegui semplicemente `gulp` da terminale. Nel nostro caso vogliamo fargli eseguire sia `watch` che `main` (per la prima esecuzione).
 
@@ -87,7 +88,6 @@ OK! Vediamo se funziona tutto.
 
 - Aggiungi `/lib/` al tuo `.gitignore`
 
-
-Prossima sezione: [4 - Utilizzare la sintassi ES6 scon una classe](/tutorial/4-es6-syntax-class)
+Prossima sezione: [4 - Utilizzare la sintassi ES6 con una classe](/tutorial/4-es6-syntax-class)
 
 Torna alla [sezione precedente](/tutorial/2-packages) o all'[indice](https://github.com/fbertone/js-stack-from-scratch).
