@@ -14,7 +14,7 @@
 
 Benvenuto a questa guida sul Javascript moderno: **Stack Javascript da zero**. 
 
-Puoi trovare la versione originale della guida, in inglese, qua: [**JavaScript Stack from Scratch**](https:/github.com/verekia/js-stack-from-scratch).
+Puoi trovare la versione originale della guida, in inglese, qua: [**JavaScript Stack from Scratch**](https://github.com/verekia/js-stack-from-scratch).
 
 Questa è una guida rapida per la creazione da zero di uno stack Javascript. Per seguire questa guida dovresti avere già qulche fondamento di programmazione generica e alcune basi di Javascript. Questa guida é focalizzata su come **collegare assieme vari tool di sviluppo** e fornesce un esempio il piú semplice possibile per ogni strumento trattato. Puoi vedere questa guida come un modo per *costruirti da zero il tuo boilerplate personalizzato*.
 
@@ -65,7 +65,7 @@ Ambienti di sviluppo e produzione, Express, React Router, Server-Side Rendering,
 
 ## Traduzioni
 
-- [English](https:/github.com/verekia/js-stack-from-scratch) by [@verekia](https://twitter.com/verekia)
+- [English](https://github.com/verekia/js-stack-from-scratch) by [@verekia](https://twitter.com/verekia)
 - [中文](https://github.com/pd4d10/js-stack-from-scratch) by [@pd4d10](http://github.com/pd4d10)
 - [Italiano](https://github.com/fbertone/js-stack-from-scratch) by [Fabrizio Bertone](https://github.com/fbertone)
 - [日本語](https://github.com/takahashim/js-stack-from-scratch) by [@takahashim](https://github.com/takahashim)
