@@ -1,3 +1,8 @@
+
+**ATTENZIONE: QUESTO REPOSITORY NON È AGGIORNATO!!!**
+
+**NUOVA VERSIONE AGGIORNATA QUI: https://github.com/fbertone/guida-javascript-moderno**
+
 # Stack JavaScript da Zero
 
 [![Build Status](https://travis-ci.org/verekia/js-stack-from-scratch.svg?branch=master)](https://travis-ci.org/verekia/js-stack-from-scratch) [![Entra in chat (in inglese) su https://gitter.im/js-stack-from-scratch/Lobby](https://badges.gitter.im/js-stack-from-scratch/Lobby.svg)](https://gitter.im/js-stack-from-scratch/Lobby)
@@ -13,6 +18,10 @@
 [![Flow](/img/flow.png)](https://flowtype.org/)
 
 Benvenuto a questa guida sul Javascript moderno: **Stack Javascript da zero**. 
+
+**ATTENZIONE: QUESTO REPOSITORY NON È AGGIORNATO!!!**
+
+**NUOVA VERSIONE AGGIORNATA QUI: https://github.com/fbertone/guida-javascript-moderno**
 
 Puoi trovare la versione originale della guida, in inglese, qua: [**JavaScript Stack from Scratch**](https://github.com/verekia/js-stack-from-scratch).
 
